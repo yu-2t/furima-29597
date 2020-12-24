@@ -68,30 +68,70 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than 10000000")
       end
+      it "priceが全角文字では登録できない" do
+        @item.price = "登録"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it "priceが半角英語では登録できない" do
+        @item.price = "aaaa"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it "priceが半角英数混合では登録できない" do
+        @item.price = "3u4u5y"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
       it "category_idが１だと登録できない" do
         @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+      it "category_idが空だと登録できない" do
+        @item.category_id = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank", "Category is not a number")
       end
       it "condition_idが１だと登録できない" do
         @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition must be other than 1")
       end
+      it "condition_idが空だと登録できない" do
+        @item.condition_id = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition can't be blank", "Condition is not a number")
+      end
       it "fee_idが1だと登録できない" do
         @item.fee_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Fee must be other than 1")
+      end
+      it "fee_idが空だと登録できない" do
+        @item.fee_id = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Fee can't be blank", "Fee is not a number")
       end
       it "prefectures_idが1だと登録できない" do
         @item.prefectures_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefectures must be other than 1")
       end
+      it "prefectures_idが空だと登録できない" do
+        @item.prefectures_id = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefectures can't be blank", "Prefectures is not a number")
+      end
       it "schedule_idが1だと登録できない" do
         @item.schedule_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Schedule must be other than 1")
+      end
+      it "schedule_idが空だと登録できない" do
+        @item.schedule_id = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Schedule can't be blank", "Schedule is not a number")
       end
     end
   end

@@ -8,7 +8,6 @@ FactoryBot.define do
     fee_id          {2}
     prefectures_id  {2}
     schedule_id     {2}
-    user_id         {1}
 
     association :user
   end
