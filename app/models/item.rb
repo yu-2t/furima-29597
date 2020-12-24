@@ -2,18 +2,21 @@ class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :user
 
-  validates :image, presence: true
-  validates :name, presence: true
-  validates :text, presence: true
-  validates :category_id, presence: true
-  validates :condition_id, presence: true
-  validates :fee_id, presence: true
-  validates :prefectures_id, presence: true
-  validates :schedule_id, presence: true
-  validates :price, presence: true
+  with_options presence: true do
+    validates :image
+    validates :name
+    validates :text
+    validates :category_id
+    validates :condition_id
+    validates :fee_id
+    validates :prefectures_id
+    validates :schedule_id
+    validates :price
+  end
+  
   validates :price,
   numericality: { only_integer: true,
-  greater_than: 300, less_than: 9999999}
+  greater_than: 299, less_than: 10000000}
   validates :price, format:{with:/\A[0-9]+\z/}
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -23,10 +26,11 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :schedule
 
-  validates :category_id,   numericality: {other_than: 1}
-  validates :condition_id,  numericality: {other_than: 1}
-  validates :fee_id,        numericality: {other_than: 1}
-  validates :prefectures_id, numericality: {other_than: 1}
-  validates :schedule_id, numericality: {other_than: 1}
-  
- end
+  with_options numericality: {other_than: 1} do
+    validates :category_id
+    validates :condition_id
+    validates :fee_id
+    validates :prefectures_id
+    validates :schedule_id
+  end
+end

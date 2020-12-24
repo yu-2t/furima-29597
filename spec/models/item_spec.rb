@@ -61,35 +61,35 @@ RSpec.describe Item, type: :model do
       it "priceが300以下だと登録できない" do
         @item.price = 100
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than 300")
+        expect(@item.errors.full_messages).to include("Price must be greater than 299")
       end
       it "priceが999999より大きいと登録できない" do
         @item.price = 10000000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than 9999999")
+        expect(@item.errors.full_messages).to include("Price must be less than 10000000")
       end
       it "category_idが１だと登録できない" do
-        @item.category_id = "1"
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
       it "condition_idが１だと登録できない" do
-        @item.condition_id = "1"
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition must be other than 1")
       end
       it "fee_idが1だと登録できない" do
-        @item.fee_id = "1"
+        @item.fee_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Fee must be other than 1")
       end
       it "prefectures_idが1だと登録できない" do
-        @item.prefectures_id = "1"
+        @item.prefectures_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefectures must be other than 1")
       end
       it "schedule_idが1だと登録できない" do
-        @item.schedule_id = "1"
+        @item.schedule_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Schedule must be other than 1")
       end
