@@ -27,8 +27,8 @@ RSpec.describe Item, type: :model do
         @item.fee_id = 2
         expect(@item).to be_valid
       end
-      it "prefectures_idが１以外なら登録できる" do
-        @item.prefectures_id = 2
+      it "prefecture_idが１以外なら登録できる" do
+        @item.prefecture_id = 2
         expect(@item).to be_valid
       end
       it "schedule_idが１以外なら登録できる" do
@@ -113,15 +113,15 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Fee can't be blank", "Fee is not a number")
       end
-      it "prefectures_idが1だと登録できない" do
-        @item.prefectures_id = 1
+      it "prefecture_idが1だと登録できない" do
+        @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefectures must be other than 1")
+        expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
       end
-      it "prefectures_idが空だと登録できない" do
-        @item.prefectures_id = ""
+      it "prefecture_idが空だと登録できない" do
+        @item.prefecture_id = ""
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefectures can't be blank", "Prefectures is not a number")
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank", "Prefecture is not a number")
       end
       it "schedule_idが1だと登録できない" do
         @item.schedule_id = 1
