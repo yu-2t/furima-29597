@@ -6,16 +6,19 @@
     <h2 class="name">
       <%= @item.name %>
     </h2>
-    <div class='item-img-content'>
-      <%= image_tag @item.image ,class:"item-box-img" %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <% if @item.buy_record.present?%>
-        <div class='sold-out'>
-          <span>Sold Out!!</span>
-        </div>
-      <% end %>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
-    </div>
+    <div class='item-img-content-show'>
+      <% @item.images.each do |image|%>
+        <%= image_tag image ,class:"item-box-img" %>
+      
+        <%# 商品が売れている場合は、sold outを表示しましょう %>
+        <% if @item.buy_record.present?%>
+          <div class='sold-out'>
+            <span>Sold Out!!</span>
+          </div>
+        <% end %>
+      <%end%>
+    </div> 
+      <%# //商品が売れている場合は、sold outを表示しましょう%>
     <div class="item-price-box">
       <span class="item-price">
         <%= @item.price %>

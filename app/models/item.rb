@@ -1,10 +1,10 @@
 class Item < ApplicationRecord
-  has_one_attached :image
+  has_many_attached :images
   belongs_to :user
   has_one :buy_record
 
   with_options presence: true do
-    validates :image
+    validates :images
     validates :name
     validates :text
     validates :category_id
@@ -33,5 +33,14 @@ class Item < ApplicationRecord
     validates :fee_id
     validates :prefecture_id
     validates :schedule_id
+  end
+
+  validate :validate_images
+
+  private
+  def validate_images
+    return if images.count <= 4
+
+    errors.add(:images,'画像は4枚まで登録できます')
   end
 end

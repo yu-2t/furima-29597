@@ -39,6 +39,10 @@
   display: flex;
   flex-direction: column;
 }
+.buy-item-right-content h2{
+  text-align: center;
+  font-size:24px;
+}
 
 .buy-item-text {
   font-size: 20px;
@@ -77,6 +81,9 @@
 
 .item-payment-price {
   font-size: 25px;
+}
+.item-payment-price span{
+  font-size: 14px;
 }
 
 /* /支払額の表示 */
