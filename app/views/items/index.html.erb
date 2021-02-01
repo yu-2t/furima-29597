@@ -134,7 +134,7 @@
         <%= link_to item_path(item.id) do %>
         <div class='item-img-content'>
            <% if item.images.count > 0 %> 
-           <%= image_tag images.first, class: "item-img" %>
+           <%= image_tag item.images.first, class: "item-img" %>
            <%end%>
           <%# 商品が売れていればsold outを表示しましょう %>
          <% if item.buy_record.present?%>
