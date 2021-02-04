@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController 
   before_action :set_item, only:[:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only:[:new, :edit, :destroy]
+  before_action :search_item, only: [:index, :search, :show]
   def index
     @items = Item.all.order("created_at DESC")
   end
@@ -25,8 +26,6 @@ class ItemsController < ApplicationController
     if current_user.id != @item.user_id
       redirect_to root_path
     end
-    
-
   end
 
   def update
@@ -49,6 +48,9 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @results = @q.result
+  end
   
   private
 
@@ -58,5 +60,9 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def search_item
+    @q = Item.ransack(params[:q])
   end
 end

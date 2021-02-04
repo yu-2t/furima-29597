@@ -16,12 +16,12 @@
 }
 
 .furima-icon {
-  width: 10vw;
+  width: 15vw;
   margin-right: 10vw;
 }
 
 .search-form {
-  width: 65vw;
+  width: 100vw;
   height: 5vh;
   display: flex;
   margin-bottom: 5px;
